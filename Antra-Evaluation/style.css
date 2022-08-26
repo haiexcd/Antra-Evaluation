@@ -1,0 +1,84 @@
+:root {
+    --height-header: 60px;
+    --height-todolist: 300px;
+    --height-todolist-header: 30px;
+
+    --width-todolist: 400px;
+
+    --color-green: rgb(30, 255, 0);
+    --color-red-button: rgb(148, 21, 21);
+    --color-red-li-hover: rgb(27, 172, 8);
+}
+
+html,
+body {
+    width: 100vw;
+    height: 100vh;
+    /* overflow: hidden; */
+}
+
+/* css reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+
+.header {
+    height: var(--height-header);
+    width: 100%;
+
+    background: white;
+    line-height: var(--height-header);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1rem;
+    font-weight: bold;
+    
+}
+
+main {
+    display: grid;
+    gap: 1rem;
+    grid-auto-flow: column;
+}
+
+.availableCourses {
+    margin-left: 5rem;
+    height: 300px;
+    width: 200px;
+    overflow: auto;
+    text-align: center;
+    border: 1px solid black
+
+}
+
+.selectedCourses {
+    margin-left: 3rem;
+    height: 300px;
+    width: 200px;
+    overflow: auto;
+    text-align: center;
+    border: 1px solid black
+
+}
+
+.availableCourses_header, .selectedCourses, li {
+    border: 1px solid black
+}
+
+ul li:nth-child(2n) {
+    background-color: rgb(221, 239, 221);
+}
+
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
