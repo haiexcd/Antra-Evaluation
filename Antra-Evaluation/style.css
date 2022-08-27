@@ -14,7 +14,6 @@ html,
 body {
     width: 100vw;
     height: 100vh;
-    /* overflow: hidden; */
 }
 
 /* css reset */
@@ -41,14 +40,20 @@ body {
     
 }
 
+.availableCourses_header {
+    padding: 1rem;
+}
+
+.selectedCourses_header {
+    padding: 1rem;
+}
+
 main {
-    display: grid;
-    gap: 1rem;
-    grid-auto-flow: column;
+    display: flex;
+    justify-content: space-around;
 }
 
 .availableCourses {
-    margin-left: 5rem;
     height: 300px;
     width: 200px;
     overflow: auto;
@@ -58,7 +63,6 @@ main {
 }
 
 .selectedCourses {
-    margin-left: 3rem;
     height: 300px;
     width: 200px;
     overflow: auto;
@@ -67,13 +71,10 @@ main {
 
 }
 
-.availableCourses_header, .selectedCourses, li {
+.availableCourses_header, .selectedCourses_header, li {
     border: 1px solid black
 }
 
-ul li:nth-child(2n) {
-    background-color: rgb(221, 239, 221);
-}
 
 
 footer {
@@ -81,4 +82,17 @@ footer {
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
+}
+
+.availableCourses_container li:nth-child(2n) {
+    background-color: rgb(221, 239, 221);
+}
+
+
+#selectedCourses_container li:nth-child(2n) {
+    background-color: rgb(221, 239, 221);
+}
+
+.selected{
+    background-color: deepskyblue !important;
 }
