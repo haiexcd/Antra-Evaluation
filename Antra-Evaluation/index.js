@@ -6,7 +6,7 @@ const Api = (() => {
 
     const getCourse = () =>
         fetch([baseUrl, coursePath].join('/')).then((response) => response.json());
-
+      
 
     return {
         getCourse,
@@ -27,8 +27,9 @@ const View = (() => {
 
 
 
+
     const selected = (element) => {
-        element.classList.add("selected")
+            element.classList.toggle("selected")
     }
 
 
@@ -110,15 +111,17 @@ const Model = ((api, view) => {
             return this.#selectedState;
         }
 
-        set selectedState(selected) {
+         set selectedState(selected) {
+       
             if (this.#selectedState.includes(+selected.id)) {
-                this.selectedState = [...this.#selectedState.filter((id) => id !== +selected.id)]
+                this.#selectedState = [...this.#selectedState.filter((id) => id !== +selected.id)]
             } else {
                 this.#selectedState = [...this.#selectedState, +selected.id]
             }
             view.selected(selected)
         }
 
+  
         get credit() {
             return this.#credit
         }
@@ -136,7 +139,7 @@ const Model = ((api, view) => {
 
         set submittedState(submitted) {
             this.#submittedState = submitted
-            const tmp = view.createTmp(this.#submittedState);
+            const tmp = view.createTmp(this.#submittedState, "Slected courses");
             const element = document.querySelector(view.domstr.selectedContainer)
             view.render(element, tmp)
         }
@@ -154,6 +157,8 @@ const Controller = ((model, view) => {
     const state = new model.State();
 
 
+
+
     const selectCourse = () => {
         const element = document.querySelector(view.domstr.courseContainer);
         const submit = document.querySelector(view.domstr.submit);
@@ -162,7 +167,7 @@ const Controller = ((model, view) => {
             if (submit.disabled)
                 return;
             target = event.target;
-
+        
 
             while (!target.classList.contains("courseItem")) {
                 target = target.parentElement;
@@ -203,7 +208,8 @@ const Controller = ((model, view) => {
         model.getCourse().then((course) => {
             state.courseList = course;
             state.submittedState = [];
-            state.credit = 0
+            state.credit = 0;
+            
         })
     }
 
