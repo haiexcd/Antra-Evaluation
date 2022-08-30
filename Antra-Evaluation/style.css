@@ -1,9 +1,5 @@
 :root {
-    --height-header: 60px;
-    --height-todolist: 300px;
-    --height-todolist-header: 30px;
-
-    --width-todolist: 400px;
+    --height-header: 80px;
 
     --color-green: rgb(30, 255, 0);
     --color-red-button: rgb(148, 21, 21);
@@ -40,12 +36,17 @@ body {
     
 }
 
-.availableCourses_header {
+.availableCourses_header, .selectedCourses_header {
     padding: 1rem;
 }
 
-.selectedCourses_header {
-    padding: 1rem;
+.availableCourses, .selectedCourses {
+    height: 300px;
+    width: 200px;
+    overflow: auto;
+    text-align: center;
+    border: 1px solid black
+
 }
 
 main {
@@ -53,28 +54,19 @@ main {
     justify-content: space-around;
 }
 
-.availableCourses {
-    height: 300px;
-    width: 200px;
-    overflow: auto;
-    text-align: center;
-    border: 1px solid black
 
-}
-
-.selectedCourses {
-    height: 300px;
-    width: 200px;
-    overflow: auto;
-    text-align: center;
-    border: 1px solid black
-
-}
 
 .availableCourses_header, .selectedCourses_header, li {
     border: 1px solid black
 }
 
+.availableCourses_container li:nth-child(2n), #selectedCourses_container li:nth-child(2n) {
+    background-color: rgb(221, 239, 221);
+}
+
+.selected{
+    background-color: deepskyblue !important;
+}
 
 
 footer {
@@ -84,15 +76,5 @@ footer {
     margin-top: 2rem;
 }
 
-.availableCourses_container li:nth-child(2n) {
-    background-color: rgb(221, 239, 221);
-}
 
 
-#selectedCourses_container li:nth-child(2n) {
-    background-color: rgb(221, 239, 221);
-}
-
-.selected{
-    background-color: deepskyblue !important;
-}
