@@ -92,12 +92,20 @@ const Model = ((api, view) => {
 
     class State {
         #courseList = [];
+        #copiedList = [];
         #selectedState = [];
         #credit = 0;
         #submittedState = [];
 
     
+        get copiedList() {
+            return this.#copiedList;
+        }
 
+        set copiedList(courses) {
+            this.#copiedList = courses
+
+        }
 
         get courseList() {
             return this.#courseList;
@@ -165,19 +173,19 @@ const Controller = ((model, view) => {
 
     const selectOption = () => {
         const element = document.getElementById("selectOptions")
-        console.log(element)
         let target ;
         element.addEventListener("change", (event) => {
             target = event.target
+            const fullList = state.courseList
             if (target.value === "all") {
-                init()
+                state.courseList = state.copiedList
             }
             if (target.value === "compulsory") {
-               const compulsory = state.courseList.filter(course => course.required)
+               const compulsory = state.copiedList.filter(course => course.required)
                state.courseList = compulsory
             }
             if (target.value === "elective") {
-                const elective = state.courseList.filter(course => !course.required)
+                const elective = state.copiedList.filter(course => !course.required)
                 state.courseList = elective
              }
         })
@@ -232,6 +240,7 @@ const Controller = ((model, view) => {
     const init = () => {
         model.getCourse().then((course) => {
             state.courseList = course;
+            state.copiedList = course;
             state.submittedState = [];
             state.credit = 0;
             
