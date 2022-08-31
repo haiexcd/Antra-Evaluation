@@ -176,7 +176,6 @@ const Controller = ((model, view) => {
         let target ;
         element.addEventListener("change", (event) => {
             target = event.target
-            const fullList = state.courseList
             if (target.value === "all") {
                 state.courseList = state.copiedList
             }
