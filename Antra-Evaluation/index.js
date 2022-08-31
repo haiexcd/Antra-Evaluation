@@ -23,6 +23,7 @@ const View = (() => {
         submit: '#selectbtn',
         credit: '#credit',
         selectedContainer: '#selectedCourses_container',
+        selectOptions: "#selectOptions"
     };
 
 
@@ -95,6 +96,9 @@ const Model = ((api, view) => {
         #credit = 0;
         #submittedState = [];
 
+    
+
+
         get courseList() {
             return this.#courseList;
         }
@@ -159,6 +163,27 @@ const Controller = ((model, view) => {
 
 
 
+    const selectOption = () => {
+        const element = document.getElementById("selectOptions")
+        console.log(element)
+        let target ;
+        element.addEventListener("change", (event) => {
+            target = event.target
+            if (target.value === "all") {
+                init()
+            }
+            if (target.value === "compulsory") {
+               const compulsory = state.courseList.filter(course => course.required)
+               state.courseList = compulsory
+            }
+            if (target.value === "elective") {
+                const elective = state.courseList.filter(course => !course.required)
+                state.courseList = elective
+             }
+        })
+    }
+
+
     const selectCourse = () => {
         const element = document.querySelector(view.domstr.courseContainer);
         const submit = document.querySelector(view.domstr.submit);
@@ -210,6 +235,7 @@ const Controller = ((model, view) => {
             state.submittedState = [];
             state.credit = 0;
             
+            
         })
     }
 
@@ -217,6 +243,7 @@ const Controller = ((model, view) => {
         init();
         selectCourse();
         submitted();
+        selectOption();
     }
 
     return {
